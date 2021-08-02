@@ -17,7 +17,7 @@ composer require afrux/news-widget:"*"
 ## Updating
 
 ```sh
-composer update afrux/news-widget:"*"
+composer update afrux/news-widget:"*" --with-dependencies
 php flarum migrate
 php flarum cache:clear
 ```
