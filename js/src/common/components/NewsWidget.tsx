@@ -1,4 +1,4 @@
-import * as Mithril from "mithril";
+import * as Mithril from 'mithril';
 import icon from 'flarum/common/helpers/icon';
 import classList from 'flarum/common/utils/classList';
 import Stream from 'flarum/common/utils/Stream';
@@ -60,7 +60,8 @@ export default class NewsWidget<T extends WidgetAttrs> extends Widget<T> {
                 this.line().index === index ? 'Afrux-NewsWidget-line--current' : '',
                 prevLine === line ? 'Afrux-NewsWidget-line--previous' : '',
               ])}
-              key={index}>
+              key={index}
+            >
               {line}
             </div>
           ))}
