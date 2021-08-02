@@ -4,6 +4,8 @@
 
 A [Flarum](http://flarum.org) extension. Simple news fader widget.
 
+![flarum lan_ (6)](https://user-images.githubusercontent.com/20267363/127893765-6754d7b8-3e32-4693-93b3-2cd23dc85723.png)
+
 ## Installation
 
 This will also install [Forum Widgets Core](https://github.com/afrux/forum-widgets-core) as it relies on it.
