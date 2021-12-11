@@ -1,4 +1,5 @@
-import * as Mithril from 'mithril';
+import type Mithril from 'mithril';
+import app from 'flarum/common/app';
 import icon from 'flarum/common/helpers/icon';
 import classList from 'flarum/common/utils/classList';
 import Stream from 'flarum/common/utils/Stream';
@@ -10,7 +11,7 @@ export default class NewsWidget<T extends WidgetAttrs> extends Widget<T> {
   private line!: CallableFunction;
   private switching!: boolean;
 
-  oninit(vnode) {
+  oninit(vnode: Mithril.Vnode<T, this>) {
     super.oninit(vnode);
 
     this.newslines = app.forum.attribute('afrux-news-widget.lines');
@@ -62,7 +63,7 @@ export default class NewsWidget<T extends WidgetAttrs> extends Widget<T> {
               ])}
               key={index}
             >
-              {line}
+              {m.trust(line)}
             </div>
           ))}
         </div>

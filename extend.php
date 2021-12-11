@@ -12,6 +12,7 @@
 namespace Afrux\News;
 
 use Flarum\Extend;
+use Flarum\Formatter\Formatter;
 
 return [
     (new Extend\Frontend('forum'))
@@ -26,6 +27,7 @@ return [
 
     (new Extend\Settings())
         ->serializeToForum('afrux-news-widget.lines', 'afrux-news-widget.lines', function (?string $value): array {
+            // @todo a proper implementation would be to use a separate table to store the news lines.
             return $value ? json_decode($value, true) : [];
         }),
 ];

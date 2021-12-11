@@ -1,5 +1,7 @@
+import app from 'flarum/admin/app';
 import Button from 'flarum/common/components/Button';
 import registerWidget from '../common/registerWidget';
+import Alert from "flarum/common/components/Alert";
 
 app.initializers.add('afrux/news-widget', () => {
   registerWidget(app);
@@ -10,7 +12,7 @@ app.initializers.add('afrux/news-widget', () => {
     .for('afrux-news-widget')
     .registerSetting(function () {
       return (
-        <div className="Form-group">
+        <div className="Form-group Afrux-NewsWidget-htmlWarning">
           <Button
             className="Button"
             onclick={() => {
@@ -21,6 +23,7 @@ app.initializers.add('afrux/news-widget', () => {
           >
             {app.translator.trans('afrux-news-widget.admin.settings.add_line')}
           </Button>
+          <Alert dismissible={false}>{app.translator.trans('afrux-news-widget.admin.settings.html_warning')}</Alert>
         </div>
       );
     })
