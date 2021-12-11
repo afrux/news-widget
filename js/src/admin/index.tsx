@@ -1,7 +1,7 @@
 import app from 'flarum/admin/app';
 import Button from 'flarum/common/components/Button';
 import registerWidget from '../common/registerWidget';
-import Alert from "flarum/common/components/Alert";
+import Alert from 'flarum/common/components/Alert';
 
 app.initializers.add('afrux/news-widget', () => {
   registerWidget(app);
