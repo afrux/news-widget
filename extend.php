@@ -12,7 +12,6 @@
 namespace Afrux\News;
 
 use Flarum\Extend;
-use Flarum\Formatter\Formatter;
 
 return [
     (new Extend\Frontend('forum'))
