@@ -3,13 +3,13 @@ import app from 'flarum/common/app';
 import icon from 'flarum/common/helpers/icon';
 import classList from 'flarum/common/utils/classList';
 import Stream from 'flarum/common/utils/Stream';
-
 import Widget, { WidgetAttrs } from 'flarum/extensions/afrux-forum-widgets-core/common/components/Widget';
 
 export default class NewsWidget<T extends WidgetAttrs> extends Widget<T> {
   private newslines!: string[];
   private line!: CallableFunction;
   private switching!: boolean;
+  private mouseHovering: boolean = false;
 
   oninit(vnode: Mithril.Vnode<T, this>) {
     super.oninit(vnode);
@@ -17,6 +17,7 @@ export default class NewsWidget<T extends WidgetAttrs> extends Widget<T> {
     this.newslines = app.forum.attribute('afrux-news-widget.lines');
     this.line = Stream({ index: 0, text: this.newslines[0] });
     this.switching = false;
+    this.mouseHovering = false;
   }
 
   className() {
@@ -32,7 +33,7 @@ export default class NewsWidget<T extends WidgetAttrs> extends Widget<T> {
   }
 
   content(): Mithril.Children {
-    if (this.newslines.length > 1 && !this.switching) {
+    if (this.newslines.length > 1 && !this.switching && !this.mouseHovering) {
       this.switching = true;
 
       setTimeout(() => {
@@ -44,14 +45,22 @@ export default class NewsWidget<T extends WidgetAttrs> extends Widget<T> {
       }, 7000);
     }
 
-    let prevLine: string;
+    let prevLine: string | undefined;
 
-    if (this.newslines.length > 1) {
+    if (this.newslines.length > 1 && !this.mouseHovering) {
       prevLine = this.newslines[(this.line().index - 1 + this.newslines.length) % this.newslines.length];
     }
 
     return (
-      <div className="Afrux-NewsWidget-content">
+      <div
+        className="Afrux-NewsWidget-content"
+        onmouseenter={() => {
+          this.mouseHovering = true;
+        }}
+        onmouseleave={() => {
+          this.mouseHovering = false;
+        }}
+      >
         <div className="Afrux-NewsWidget-icon">{icon('fas fa-bullhorn')}</div>
         <div className="Afrux-NewsWidget-line-container">
           {this.newslines.map((line, index) => (
